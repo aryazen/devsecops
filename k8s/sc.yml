@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-basic-auth
+  namespace: lti
+type: kubernetes.io/basic-auth
+stringData:
+  username: ODQ4NDgxMDAyMAo=
+  password: YnVudHlAMTIzCg==
