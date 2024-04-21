@@ -1,28 +1,21 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: example-ingress
-  namespace: lti
+  name: argo-ingress
+  namespace: myargo
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /$1
-    cert-manager.io/cluster-issuer: letsencrypt-staging
 spec:
-  tls:
-  - hosts:
-    - bluenation.tech
-    - argo.bluenation.tech
-    
-    secretName: letsencrypt-staging
   rules:
-    - host: bluenation.tech
+    - host: argo.zentech.com
       http:
         paths:
           - path: /?(.*)
             pathType: Prefix
             backend:
               service:
-                name: my-service
+                name: myargo-argocd-server
                 port:
                   number: 80
